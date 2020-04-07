@@ -8,11 +8,63 @@
     <link href="framework/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>Hello, world!</h1>
+    <h1>BICT Unit Search Filter</h1>
     
-    <div ng-app="">
+    <!-- Unit Object Array Initialisation -->
+    <div ng-app="" ng-init="objArray = [{code:'ICT10001',desc:'Problem Solving with ICT',type:'Core'},
+    {code:'COS10005',desc:'Web Development',type:'Core'},
+    {code:'INF10003',desc:'Introduction to Business Information Systems',type:'Core'},
+    {code:'INF10002',desc:'Database Analysis and Design',type:'Core'},
+    {code:'COS10009',desc:'Introduction to Programming',type:'Core'},
+    {code:'INF30029',desc:'Information Technology Project Management',type:'Core'},
+    {code:'ICT30005',desc:'Professional Issues in Information Technology',type:'Core'},
+    {code:'ICT30001',desc:'Information Technoogy Project',type:'Core'},
+    {code:'COS20001',desc:'User-Centred Design',type:'Software Development'},
+    {code:'TNE10005',desc:'Network Administration',type:'Software Development'},
+    {code:'COS20016',desc:'Operating System Configuration',type:'Software Development'},
+    {code:'SWE20001',desc:'Development Project 1 - Tools and Practices',type:'Software Development'},
+    {code:'COS20007',desc:'Object Oriented Programming',type:'Software Development'},
+    {code:'COS30015',desc:'IT Security',type:'Software Development'},
+    {code:'COS30043',desc:'Interface Design and Development',type:'Software Development'},
+    {code:'COS30017',desc:'Software Development for Mobile Devices',type:'Software Development'},
+    {code:'INF20012',desc:'Enterprise Systems',type:'Systems Analysis'},
+    {code:'ACC10007',desc:'Financial Information for Decision Making',type:'Systems Analysis'},
+    {code:'INF20003',desc:'Requirement Analysis and Modelling',type:'Systems Analysis'},
+    {code:'ACC20014',desc:'Management Decision Making',type:'Systems Analysis'},
+    {code:'INF30005',desc:'Business Process Management',type:'Systems Analysis'},
+    {code:'INF30003',desc:'Business Information Systems Analysis',type:'Systems Analysis'},
+    {code:'INF30020',desc:'Information Systems Risk and Security',type:'Systems Analysis'},
+    {code:'INF30001',desc:'Systems Acquisition & Implementation Management',type:'Systems Analysis'}]">
         
+    <p><label>Code: <input type="text" ng-model="filterCode"/></label></p>
+    <p><label>Description: <input type="text" ng-model="filterDesc"/></label></p>
+        
+    <h2>Unit Type:</h2>
+    <p><label><input type="radio" ng-model="filterType" value="Core"/> Core</label></p>
+    <p><label><input type="radio" ng-model="filterType" value="Software Development"/> Software Development</label></p>
+    <p><label><input type="radio" ng-model="filterType" value="Systems Analysis"/> Systems Analysis</label></p>
+    <p><label><input type="radio" ng-model="filterType" value=""/> All</label></p>
+    <p>{{ filterType }}</p>
+    
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Credit Points</th>
+                <th>Type</th>
+            </tr>
+            <!-- Outputs All Elements -->
+            <tr ng-repeat="obj in objArray | filter: {code : filterCode, desc : filterDesc, type : filterType}">
+                <td>{{ obj.code }}</td>
+                <td>{{ obj.desc }}</td>
+                <td>{{ 12.50 | number:2 }}</td>
+                <td>{{ obj.type }}</td>
+            </tr>
+        </table>
     </div>
+    </div>
+    
     <script src="framework/js/jquery.min.js"></script>
     <script src="framework/js/bootstrap.min.js"></script>
     <script src="framework/js/angular.min.js"></script>
