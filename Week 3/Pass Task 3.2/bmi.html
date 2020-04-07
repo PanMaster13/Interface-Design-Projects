@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Template that uses Bootstrap</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <link href="framework/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Hello, world!</h1>
+    
+    <!-- Variable Initialisation -->
+    <div ng-app="" ng-init="numWt = 0;numHt = 0">
+    
+    <p>Please enter your weight in kilograms (kg): <input type="text" ng-model="numWt"/></p>
+    <p>Please enter your height in centimeters (cm): <input type="text" ng-model="numHt"/></p>
+        
+    <!-- BMI Calculation & Output -->
+    <p>Your BMI is : {{ (numWt / ((numHt / 100) * (numHt / 100))) | number:'2' }}
+        
+    <!-- Underweight BMI -->
+    <span ng-if="(numWt/((numHt/100)*(numHt/100)))< 18.5">Underweight</span>
+        
+    <!-- Normal Weight BMI -->
+    <span ng-if="((numWt/((numHt/100)*(numHt/100)))>= 18.5) && ((numWt/((numHt/100)*(numHt/100)))< 24.99)">Normal Weight</span>
+            
+    <!-- Overweight BMI -->
+    <span ng-if="((numWt/((numHt/100)*(numHt/100)))>= 25) && ((numWt/((numHt/100)*(numHt/100)))< 29.99)">Overweight</span>
+        
+    <!-- Obese BMI -->
+    <span ng-if="(numWt/((numHt/100)*(numHt/100)))>= 30">Obese</span>
+    </p>
+    
+    </div>
+    <script src="framework/js/jquery.min.js"></script>
+    <script src="framework/js/bootstrap.min.js"></script>
+    <script src="framework/js/angular.min.js"></script>
+</body>
+
+</html>
