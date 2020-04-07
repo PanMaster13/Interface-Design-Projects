@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Template that uses Bootstrap</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <link href="framework/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Hello, world!</h1>
+    
+    <div ng-app="">
+        <p>Please enter your name: <input type="text" ng-model="strName"/></p>
+        <p ng-show="(strName | lowercase) == 'jason'">Awesome Name!</p>
+        <p ng-hide="(strName | lowercase) == 'jason'">{{ strName }} is not my name.</p>
+    </div>
+    <script src="framework/js/jquery.min.js"></script>
+    <script src="framework/js/bootstrap.min.js"></script>
+    <script src="framework/js/angular.min.js"></script>
+</body>
+
+</html>
