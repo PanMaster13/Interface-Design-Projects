@@ -8,12 +8,23 @@
     <link href="framework/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>Name Tester App</h1>
     
-    <div ng-app="">
-        <p>Please enter your name: <input type="text" ng-model="strName"/></p>
-        <p ng-show="(strName | lowercase) == 'jason'">Awesome Name!</p>
-        <p ng-hide="(strName | lowercase) == 'jason'">{{ strName }} is not my name.</p>
+    <div class="container" ng-app="">
+        <div class="row">
+            <div class="col-md-12"><h1>Name Tester App</h1></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label for="name">Please enter your name:</label>
+                <input id="name" class="form-control" type="text" ng-model="strName"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-success" ng-show="(strName | lowercase) == 'jason'">Awesome Name!</p>
+                <p class="text-danger" ng-hide="(strName | lowercase) == 'jason'">{{ strName }} is not my name.</p>
+            </div>
+        </div>
     </div>
     <script src="framework/js/jquery.min.js"></script>
     <script src="framework/js/bootstrap.min.js"></script>
