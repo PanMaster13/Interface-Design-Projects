@@ -36,15 +36,18 @@
             <!-- BMI Calculation & Output -->
             <p>Your BMI is : {{ (numWt / ((numHt / 100) * (numHt / 100))) | number:'2' }}
             <!-- Underweight BMI -->
+            <!-- 'bg-warning' gives a yellowish color to the text background -->
             <span class="bg-warning" ng-if="(numWt/((numHt/100)*(numHt/100)))< 18.5">Underweight</span>
         
             <!-- Normal Weight BMI -->
+            <!-- 'bg-success' gives a green color to the text background -->
             <span class="bg-success" ng-if="((numWt/((numHt/100)*(numHt/100)))>= 18.5) && ((numWt/((numHt/100)*(numHt/100)))< 24.99)">Normal Weight</span>
             
             <!-- Overweight BMI -->
             <span class="bg-warning" ng-if="((numWt/((numHt/100)*(numHt/100)))>= 25) && ((numWt/((numHt/100)*(numHt/100)))< 29.99)">Overweight</span>
         
             <!-- Obese BMI -->
+            <!-- 'bg-danger' gives a red color to the text background -->
             <span class="bg-danger" ng-if="(numWt/((numHt/100)*(numHt/100)))>= 30">Obese</span>
             </p>
         </div>
