@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="calculatorApp">
+<head>
+    <title>Number Guessing Game</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <link href="framework/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body data-ng-controller="calculatorCtrl">
+    
+    <h1>Calculator App</h1>
+    <p>Answer: {{ answer }}</p>
+    <p>Display: {{ display }}</p>
+    
+    <div>
+        <button data-ng-click="clear()">AC</button>
+        <button>MR</button>
+        <button>MR+</button>
+        <button data-ng-click="displayChange('/')">/</button>
+    </div>
+    
+    <div>
+        <button data-ng-click="displayChange('7')">7</button>
+        <button data-ng-click="displayChange('8')">8</button>
+        <button data-ng-click="displayChange('9')">9</button>
+        <button data-ng-click="displayChange('X')">X</button>
+    </div>
+    
+    <div>
+        <button data-ng-click="displayChange('4')">4</button>
+        <button data-ng-click="displayChange('5')">5</button>
+        <button data-ng-click="displayChange('6')">6</button>
+        <button data-ng-click="displayChange('-')">-</button>
+    </div>
+    
+    <div>
+        <button data-ng-click="displayChange('1')">1</button>
+        <button data-ng-click="displayChange('2')">2</button>
+        <button data-ng-click="displayChange('3')">3</button>
+        <button data-ng-click="displayChange('+')">+</button>
+    </div>
+    
+    <div>
+        <button data-ng-click="displayChange('0')">0</button>
+        <button>=</button>
+    </div>
+    <script src="framework/js/jquery.min.js"></script>
+    <script src="framework/js/bootstrap.min.js"></script>
+    <script src="framework/js/angular.min.js"></script>
+    <script src="framework/js/angular-route.min.js"></script>
+    <!-- The Controller File -->
+    <script src="calculator-app.js"></script>
+    
+    
+</body>
+
+</html>
