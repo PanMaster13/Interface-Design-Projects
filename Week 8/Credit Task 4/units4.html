@@ -8,6 +8,10 @@
     <link href="framework/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
+    <!-- Highchart plugin -->
+    <script src="framework/highchart/highcharts.js"></script>
+    <noscript></noscript>
+    
     <!-- Unit Object Array Initialisation -->
     <div class="container" ng-controller="unitsCTRL">
     
@@ -39,8 +43,17 @@
                 <label class="radio-inline"><input type="radio" ng-model="filterType" value="Core"/> Core</label>
                 <label class="radio-inline"><input type="radio" ng-model="filterType" value="Software Development"/> Software Development</label>
                 <label class="radio-inline"><input type="radio" ng-model="filterType" value="Systems Analysis"/> Systems Analysis</label>
+                <label class="radio-inline"><input type="radio" ng-model="filterType" value="Elective"/> Elective</label>
+                <label class="radio-inline"><input type="radio" ng-model="filterType" value="Network"/> Network</label>
                 <label class="radio-inline"><input type="radio" ng-model="filterType" value=""/> All</label>
             </div>
+        </div>
+    </div>
+        
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Placeholder for column chart -->
+            <div id="theChart"></div>
         </div>
     </div>
 
@@ -77,6 +90,7 @@
     <noscript></noscript>
     <script src="framework/js/angular.min.js"></script>
     <noscript></noscript>
+    
     <!-- Controller JS file -->
     <script src="appunits4.js"></script>
     <noscript></noscript>
