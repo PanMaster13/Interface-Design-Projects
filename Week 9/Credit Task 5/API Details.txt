@@ -1,0 +1,4 @@
+Accuweather Details
+App name: MyWeatherForecastApp
+API Key: GnQDPMudtC2vptlhtBVHj2iVSTAoRJUr
+Kuching Location Key: 230204
