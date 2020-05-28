@@ -3,16 +3,43 @@ var app = angular.module("weatherApp", []);
 app.controller("weatherCTRL", function($scope, $http){
     
     // Card with Current Weather, Time, Data, Location
+    // Incase Accuweather limit reached, use JSON backup data instead
+    // URL: http://dataservice.accuweather.com/currentconditions/v1/230204?apikey=M3S1eL8JAACFWTcvfkQjqkbds5Q7WBXk&language=en-us&details=true
+    // Backup JSON: currentConditions_backup.json
+    $http.get("http://dataservice.accuweather.com/currentconditions/v1/230204?apikey=M3S1eL8JAACFWTcvfkQjqkbds5Q7WBXk&language=en-us&details=true")
+    .then (
+        // Request Success
+        function (response){
+            $scope.requestText1 = "";
+            $scope.currentCond_data = response.data;
+            angular.forEach($scope.currentCond_data, function(item){
+                
+                $scope.currentLocalTime = item.LocalObservationDateTime;
+                $scope.stringArray = $scope.currentLocalTime.split("T");
+                $scope.currentDate = $scope.stringArray[0];
+                $scope.currentTime = $scope.stringArray[1].split("+")[0];
+                
+                $scope.currentWeather = item.WeatherText;
+                $scope.currentTemp = item.Temperature.Metric.Value;
+                $scope.currentPressure = item.Pressure.Metric.Value;
+                $scope.currentWindSpeed = item.Wind.Speed.Metric.Value;
+            });
+        },
+        // Request Error
+        function (response){
+            $scope.requestText1 = "Failed to obtain data from Accuweather.com.";
+        }
+    );
     
     // Acquire 12 Hours of Hourly Forecasts
     // Incase Accuweather limit reached, use JSON backup data instead
     // URL: http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/230204?apikey=M3S1eL8JAACFWTcvfkQjqkbds5Q7WBXk&language=en-us&details=true&metric=true
     // Backup JSON: twelveHour_backup.json
-    $http.get("twelveHour_backup.json")
+    $http.get("http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/230204?apikey=M3S1eL8JAACFWTcvfkQjqkbds5Q7WBXk&language=en-us&details=true&metric=true")
     .then (
         // Request Success
         function(response){
-            $scope.requestText1 = "";
+            $scope.requestText2 = "";
             $scope.array1 = response.data;
             
             $scope.tempArray = [];
@@ -63,7 +90,7 @@ app.controller("weatherCTRL", function($scope, $http){
         },
         // Request Error
         function(response){
-            $scope.requestText1 = "Failed to obtain data from Accuweather.com."
+            $scope.requestText2 = "Failed to obtain data from Accuweather.com."
         }
     );
     
@@ -71,11 +98,11 @@ app.controller("weatherCTRL", function($scope, $http){
     // Incase Accuweather limit reached, use JSON backup data instead
     // URL: http://dataservice.accuweather.com/forecasts/v1/daily/5day/230204?apikey=M3S1eL8JAACFWTcvfkQjqkbds5Q7WBXk&language=en-us&details=true&metric=true
     // Backup JSON: fiveDayForecast_backup.json
-    $http.get("fiveDayForecast_backup.json")
+    $http.get("http://dataservice.accuweather.com/forecasts/v1/daily/5day/230204?apikey=M3S1eL8JAACFWTcvfkQjqkbds5Q7WBXk&language=en-us&details=true&metric=true")
     .then (
         // Request Sucess
         function (response){
-            $scope.requestText2 = "";
+            $scope.requestText3 = "";
             // Points to Daily Forecasts part of the JSON data retrieved
             $scope.array2 = response.data.DailyForecasts;
             
@@ -141,7 +168,7 @@ app.controller("weatherCTRL", function($scope, $http){
         },
         // Request Error
         function(response){
-            $scope.requestText2 = "Failed to obtain data from Accuweather.com."
+            $scope.requestText3 = "Failed to obtain data from Accuweather.com."
         }
     );
     
@@ -149,11 +176,11 @@ app.controller("weatherCTRL", function($scope, $http){
     // Incase Accuweather limit reached, use JSON backup data instead
     // URL: http://dataservice.accuweather.com/currentconditions/v1/230204/historical/24?apikey=M3S1eL8JAACFWTcvfkQjqkbds5Q7WBXk&language=en-us&details=true
     // Backup JSON: twentyfourHours_backup.json
-    $http.get("twentyfourHours_backup.json")
+    $http.get("http://dataservice.accuweather.com/currentconditions/v1/230204/historical/24?apikey=M3S1eL8JAACFWTcvfkQjqkbds5Q7WBXk&language=en-us&details=true")
     .then (
         // Request Success
         function(response){
-            $scope.requestText3 = "";
+            $scope.requestText4 = "";
             $scope.array3 = response.data;
             
             $scope.highestTemp_array = [];
@@ -206,9 +233,72 @@ app.controller("weatherCTRL", function($scope, $http){
         },
         // Request Error
         function(response){
-            $scope.requestText3 = "Failed to obtain data from Accuweather.com.";
+            $scope.requestText4 = "Failed to obtain data from Accuweather.com.";
         }
     );
     
     // Additional Chart from Any Data From Accuweather API
+    // Incase Accuweather limit reached, use JSON backup data instead
+    // URL: http://dataservice.accuweather.com/currentconditions/v1/topcities/50?apikey=M3S1eL8JAACFWTcvfkQjqkbds5Q7WBXk&language=en-us
+    // Backup JSON: topFiftyCities.json
+    $http.get("http://dataservice.accuweather.com/currentconditions/v1/topcities/50?apikey=M3S1eL8JAACFWTcvfkQjqkbds5Q7WBXk&language=en-us")
+    .then (
+        // Request Success
+        function (response){
+            $scope.requestText5 = "";
+            $scope.array4 = response.data;
+            
+            $scope.city_array = [];
+            $scope.city_temp = [];
+            angular.forEach($scope.array4, function(item){
+                $scope.city_array.push(item.EnglishName);
+                $scope.city_temp.push(item.Temperature.Metric.Value);
+            });
+            
+            Highcharts.chart("chart4", {
+                chart: {
+                    type: "column"
+                },
+                title: {
+                    text: "Temperature of Top 50 Cities in the World"
+                },
+                subtitle:{
+                    text: "Source: https://developer.accuweather.com/"
+                },
+                accessbility: {
+                    announceNewData: {
+                        enabled: true
+                    }
+                },
+                xAxis: {
+                    categories: $scope.city_array
+                },
+                yAxis: {
+                    title: {
+                        text: "Temperature (C)"
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: true
+                    }
+                },
+                series: [{
+                    name: "Temperature",
+                    colorByPoint: true,
+                    data: $scope.city_temp
+                }]
+            });
+        },
+        // Request Error
+        function (response){
+            $scope.requestText5 = "Failed to obtain data from Accuweather.com.";
+        }
+    );
 });
