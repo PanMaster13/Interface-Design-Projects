@@ -57,7 +57,7 @@ app.controller("pigeonTable", function ($scope, $http, $uibModal) {
 
         //Pagination Settings
         $scope.currentPage = 1;
-        $scope.itemsPerPage = "5";
+        $scope.itemsPerPage = "10";
 
         //Sorting Order Setting
         $scope.isReverse = false;

@@ -14,14 +14,6 @@
 
 <body>
     <div>
-		<!-- Simple Line / Column Chart -->
-        <div class="col-md-6">
-            <pigeon-chart query="SELECT relyear, count(relyear)
-                                 FROM movie
-                                 GROUP BY relyear">
-            </pigeon-chart>
-        </div> 
-        
 		<!-- Line / Column Chart with Title, Subtitle, axies title, data label and legend -->
         <div class="col-md-6">
             <pigeon-chart query="SELECT relyear, count(relyear) 'Movie Count'
@@ -55,18 +47,6 @@
             </pigeon-chart> 
         </div>
         
-        
-        <div class="col-md-6">
-            <pigeon-chart query="SELECT ratingcode, min(runtime), avg(runtime), max(runtime)
-                                 FROM movie GROUP BY ratingcode"
-                          type="column"
-                          title="Comparison of Movie Runtime by Rating Code"
-                          subtitle="Min, Average & Max"
-                          axisx-title="Rating"
-                          axisy-title="Runtime"
-                          show-legend="true">
-            </pigeon-chart>
-        </div> 
         <div class="col-md-6">
             <pigeon-chart query="SELECT ratingcode, SUM(IF(tmdb_score >= 7, 1 , 0)) as 'Good Movie', 
                                     SUM(IF(tmdb_score < 7, 1 , 0)) as 'Bad Movie'
@@ -80,7 +60,8 @@
                           data-data-label="true"
                           show-legend="true">
             </pigeon-chart>
-        </div> 
+        </div>
+		
         <div class="col-md-6">
             <pigeon-chart query="SELECT ratingcode, count(ratingcode)
                                  FROM movie
